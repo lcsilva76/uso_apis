@@ -1,6 +1,6 @@
 //importar módulos
 import React, {useState, useEffect} from 'react';
-import './Fotos.css'
+import {DivFotos} from './../styled'
 
 function Fotos() {
         //useState
@@ -12,14 +12,6 @@ function Fotos() {
             obterDados()
         })
     
-        //Função para obter os dados da API
-        // const obterDados = async ()=>{
-        //     const dados = await fetch('https://jsonplaceholder.typicode.com/photos')
-        //     const converter = await dados.json()
-        //     setVetor(converter)
-        //     setStatus('Dados carregados com Sucesso!')
-        // }
-
         const obterDados = ()=>{
             fetch('https://jsonplaceholder.typicode.com/photos')
             .then((resp)=>{
@@ -33,12 +25,12 @@ function Fotos() {
         
     
         return(
-            <div className='container'>
+            <DivFotos>
                 <header>
                 <h1>Exemplo de consumo API</h1>
                 </header>
                 <main>
-                    {status == 'Carregando...' 
+                    {status === 'Carregando...' 
                         ? 
                         <div id='espera'>Carregando...</div>
                         :
@@ -47,14 +39,14 @@ function Fotos() {
                             <h2>Foto: {objeto.id}</h2>
                             <img src={objeto.thumbnailUrl} alt={`Foto ${objeto.id}`} />
                             <p>{objeto.title}</p>
-                            <a className='btnVw' href={objeto.url} target='_blank'>{`Visualizar img ${objeto.id}`}</a>
+                            <a className='btnVw' href={objeto.url} target='_blank' rel="noreferrer">{`Visualizar img ${objeto.id}`}</a>
                         </div>
                     ))}
                </main>
                <footer>
                 <p>Exemplo de Imagens - {status}</p>
                </footer>                
-            </div>
+            </DivFotos>
         )
 }
 
